@@ -994,9 +994,9 @@ Free services can change, rate-limit, delay or omit data. The backend must cache
 
 ## LLM
 
-The project should support LLM-powered summaries, suggestions and explanation text, but phase 1 must use a local Ollama model only. Do not use paid LLM APIs or cloud API keys during local development. The backend should keep calculations deterministic and use the LLM only to translate verified facts, metrics and scores into human-readable educational commentary.
+The project should support LLM-powered summaries, suggestions and explanation text using Google Gemini. The backend should keep calculations deterministic and use Gemini only to translate verified facts, metrics and scores into human-readable educational commentary.
 
-Ollama should be treated as optional at runtime: if it is not running, the dashboard should still load market data and clearly show that local LLM summaries are unavailable.
+Gemini should be treated as optional at runtime: if it is not configured or unavailable, the dashboard should still load market data and clearly show that AI summaries are unavailable.
 
 ## Database
 
@@ -1396,7 +1396,7 @@ The project must be completed in exactly three phases. Each phase has a demonstr
 - Add free RSS news ingestion and VADER sentiment; display source, timestamp and sentiment breakdown.
 - Implement transparent technical, fundamental, risk and sentiment scoring plus the final BUY/HOLD/SELL mapping.
 - Generate the explanation using verified facts and deterministic templates; add an educational/not-financial-advice disclaimer.
-- Deliverable: the dashboard presents an explainable analysis with clear missing-data handling, local Ollama-powered summary support and no paid API.
+- Deliverable: the dashboard presents an explainable analysis with clear missing-data handling and Gemini-powered summary support.
 
 ## Phase 3 — ML, Quality and Release
 
@@ -1423,7 +1423,7 @@ The project must be completed in exactly three phases. Each phase has a demonstr
 | Advanced ML | Optional XGBoost (free/open-source) |
 | NLP | NLTK / VADER |
 | Advanced NLP | Optional local Transformers model |
-| Explanations | Deterministic calculations plus local Ollama summaries/suggestions |
+| Explanations | Deterministic calculations plus Gemini summaries/suggestions |
 | Database | SQLite for local development; PostgreSQL planned for deployment |
 | Environment | python-dotenv for optional configuration only |
 | Version Control | Git + GitHub |

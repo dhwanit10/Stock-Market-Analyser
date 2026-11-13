@@ -4,7 +4,7 @@ from app.core.config import get_settings
 from app.schemas.market import HealthResponse, StockAnalysis, StockHistory, StockQuote, SuggestionRequest, SuggestionResponse
 from app.services.analysis import AnalysisService
 from app.services.market_data import MarketDataService
-from app.services.ollama import OllamaService
+from app.services.gemini import GeminiService
 
 router = APIRouter(prefix="/api")
 
@@ -17,7 +17,7 @@ def health() -> HealthResponse:
         app=settings.app_name,
         environment=settings.app_env,
         database="sqlite-local",
-        llm_provider="ollama-local",
+        llm_provider="gemini",
     )
 
 
@@ -42,9 +42,9 @@ def stock_analysis(symbol: str) -> StockAnalysis:
 
 @router.get("/llm/status")
 def llm_status() -> dict[str, str | bool]:
-    return OllamaService().status()
+    return GeminiService().status()
 
 
 @router.post("/llm/suggest", response_model=SuggestionResponse)
 def llm_suggest(request: SuggestionRequest) -> SuggestionResponse:
-    return OllamaService().suggest(request.symbol, request.context)
+    return GeminiService().suggest(request.symbol, request.context)

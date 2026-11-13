@@ -26,11 +26,7 @@ SQLite is used for phase 1 local caching. PostgreSQL is the planned deployment d
 - RSS headline sentiment scored with VADER
 - Transparent score components and a BUY/HOLD/SELL signal
 
-## Local LLM
+## Gemini summaries
 
-The backend expects Ollama at `http://localhost:11434`.
-
-```powershell
-ollama pull llama3.2
-ollama serve
-```
+Set `GEMINI_API_KEY` and `GEMINI_MODEL` in `backend/.env`. The API key is read only
+by the backend and is never sent to the frontend.

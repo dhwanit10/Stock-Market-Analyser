@@ -2,15 +2,15 @@
 
 Root-level full-stack project split into:
 
-- `backend/` - FastAPI APIs, SQLite cache, market data services and local Ollama integration.
+- `backend/` - FastAPI APIs, SQLite cache, market data services and Gemini integration.
 - `frontend/` - React/Vite dashboard.
 
-Phase 1 uses only free local/open-source resources:
+Phase 1 uses:
 
 - Market data: `yfinance`
 - Database: SQLite for local development
 - Deployment database target: PostgreSQL
-- LLM provider: local Ollama models
+- LLM provider: Google Gemini
 
 Phase 2 adds explainable analysis:
 
@@ -48,3 +48,5 @@ Useful backend endpoints:
 - `GET /api/stocks/{symbol}/analysis`
 - `GET /api/llm/status`
 - `POST /api/llm/suggest`
+
+Configure `GEMINI_API_KEY` and `GEMINI_MODEL` in `backend/.env`.

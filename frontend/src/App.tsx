@@ -36,7 +36,7 @@ function App() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    getLlmStatus().then(setLlmStatus).catch(() => setLlmStatus({ provider: 'ollama', model: 'unknown', available: false }));
+    getLlmStatus().then(setLlmStatus).catch(() => setLlmStatus({ provider: 'gemini', model: 'unknown', available: false }));
   }, []);
 
   useEffect(() => {
@@ -89,7 +89,7 @@ function App() {
       const response = await getLlmSuggestion(quote.symbol, marketContext);
       setSuggestion(response.suggestion);
     } catch (nextError) {
-      setSuggestion(nextError instanceof Error ? nextError.message : 'Unable to get an Ollama summary.');
+      setSuggestion(nextError instanceof Error ? nextError.message : 'Unable to get a Gemini summary.');
     } finally {
       setSuggesting(false);
     }
@@ -273,15 +273,15 @@ function App() {
         <div className="llm-panel">
           <div className="panel-title">
             <BrainCircuit size={20} />
-            <span>Local LLM Summary</span>
+            <span>Gemini Summary</span>
           </div>
           <p className="llm-status">
-            Ollama {llmStatus?.available ? 'ready' : 'not connected'} · Model {llmStatus?.model ?? 'checking'}
+            Gemini {llmStatus?.available ? 'ready' : 'not configured'} · Model {llmStatus?.model ?? 'checking'}
           </p>
           <button className="secondary-action" type="button" onClick={handleSuggestion} disabled={!quote || suggesting}>
-            {suggesting ? 'Summarizing...' : 'Ask Ollama for summary'}
+            {suggesting ? 'Summarizing...' : 'Ask Gemini for summary'}
           </button>
-          <div className="suggestion-box">{suggestion || 'Local LLM suggestions will appear here when Ollama is running.'}</div>
+          <div className="suggestion-box">{suggestion || 'Gemini suggestions will appear here when the API key is configured.'}</div>
         </div>
       </section>
     </main>

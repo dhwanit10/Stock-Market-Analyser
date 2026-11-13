@@ -12,4 +12,4 @@ def test_health_endpoint() -> None:
     payload = response.json()
     assert payload["status"] == "ok"
     assert payload["database"] == "sqlite-local"
-    assert payload["llm_provider"] == "ollama-local"
+    assert payload["llm_provider"] == "gemini"
